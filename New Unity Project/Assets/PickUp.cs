@@ -5,46 +5,61 @@ using UnityEngine;
 public class PickUp : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Items item; 
-    void Start()
-    {
-        
-    }
+    public Items item;
+    public bool playerdetected;
+    
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 2);  // make limits 
+        int i = 0;
+        while (i < hitColliders.Length)
         {
-
-
-
-
-
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
+            if (hitColliders[i].tag == "Player")      //check if player inside the sphere
             {
-                if (hit.transform.name == this.name)
+                if (Input.GetMouseButtonDown(0))
                 {
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    RaycastHit hit;
 
-                   
-                    bool wasPickedUp = Inventory.instance.Add(item);
 
-                    if (wasPickedUp)
+
+                    if (Physics.Raycast(ray, out hit))
                     {
-                        Debug.Log("item picked =  " + item.name);
-                        Destroy(gameObject);
+                        if (hit.transform.name == this.name)      //if mouse on the item 
+                        {
+
+
+                            bool wasPickedUp = Inventory.instance.Add(item);   
+
+                            if (wasPickedUp)
+                            {
+                                Debug.Log("item picked =  " + item.name);     //if item picked 
+                                Destroy(gameObject);
+                            }
+                        }
+
                     }
+
+
+
                 }
-               
-                }
-            
 
+            }
 
-
-
+            i++;                                       //if player not detected 
+           
+          
         }
+
+       
     }
+
+
+   
 }
+
+   
+    
+

@@ -10,7 +10,16 @@ public class Items : ScriptableObject
     public bool isDefaultItem = false; 
 
 
+    public virtual void Use ()
+    {
+        //use the item 
 
+        //something will happen 
+
+        Debug.Log("using " + name);
+
+
+    }
 
 
 }

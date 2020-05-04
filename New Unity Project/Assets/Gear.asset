@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62075f1b4c0712e44b891323892abb29, type: 3}
+  m_Script: {fileID: 11500000, guid: b12a73732e67b674c8beac38d34f85e4, type: 3}
   m_Name: Gear
   m_EditorClassIdentifier: 
   name: Gear
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 55626a477d5685d4abf456bf2408dd51, type: 3}
   isDefaultItem: 0
