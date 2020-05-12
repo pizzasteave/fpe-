@@ -7,7 +7,7 @@ using UnityEngine;
  
 public class Gear : Items
 {
-
+    
     public override void Use()
     {
         base.Use();

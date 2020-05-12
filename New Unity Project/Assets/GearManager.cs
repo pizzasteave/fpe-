@@ -1,16 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class GearManager : MonoBehaviour
 {
     public GameObject gearprefab; 
-    public GameObject gear;
+    
     GameObject newgear; 
     public bool used;
-    public Camera cam; 
+    public GameObject player;
+   public Transform spawn; 
 
-    #region Singleton 
+   #region Singleton 
     public static GearManager instance;
     void Awake()
     {
@@ -22,38 +24,49 @@ public class GearManager : MonoBehaviour
     #endregion
 
 
-     public void Spawn ( )
+   
+    
+    
+    void Update()
+    {
+        if (used == true)
+        {
+
+            Debug.Log(spawn.position);
+            newgear.transform.position = spawn.position;
+            newgear.transform.rotation = spawn.rotation;
+        } 
+
+        // gear = GameObject.Find("Gear");
+        /* if  (Input.GetMouseButtonDown(1))
+         {
+
+
+             Vector3 mouse = Input.mousePosition;
+             newgear.transform.position = mouse;
+
+
+         }*/
+
+
+    }
+
+
+    public void Spawn()
     {
         if (used == true)
         {
 
             newgear = Instantiate(gearprefab) as GameObject;
-           Vector3 camposition = cam.transform.position;
-            newgear.transform.position =  new Vector3(camposition.x , camposition.y, camposition.z - 5f );
+            // transform.localScale = player.transform.localScale;
+            Physics.IgnoreCollision(newgear.GetComponent<Collider>(),player.GetComponent<Collider>()) ; 
+            Update();
            
-            
+
             Debug.Log("spaw");
 
         }
 
     }
-    
-    
-    
-    void Update()
-    {
 
-        // gear = GameObject.Find("Gear");
-        if  (Input.GetMouseButtonDown(1))
-        {
-
-
-            Vector3 mouse = Input.mousePosition;
-            newgear.transform.position = mouse;
-
-
-        }
-
-
-    }
 }

@@ -36,14 +36,14 @@ public class InventoryUI : MonoBehaviour
     {
         for (int i=0;i < slots.Length; i++)
         {
-            if (i < inventory.items.Count)
+            if (i < inventory.items.Count)                                                  //remplissage 
             {
                 slots[i].AddItemToTheInventory(inventory.items[i]);
 
             }
             else
 
-                slots[i].ClearSlot(); 
+                slots[i].ClearSlot();                                                                   //remplissage vide 
         }
          
 
