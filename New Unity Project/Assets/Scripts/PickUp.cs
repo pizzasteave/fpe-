@@ -1,18 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Items item;
-    public bool playerdetected;
-    
+    public Gear  item;
+
+    public void Start()
+    {
+        if (this.CompareTag("Gear"))
+        {
+            item.gearsize = this.transform.localScale; 
+        }
+    }
 
     // Update is called once per frame
     void Update()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 2);  // make limits 
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 1);  // make limits 
         int i = 0;
         while (i < hitColliders.Length)
         {
@@ -23,19 +30,19 @@ public class PickUp : MonoBehaviour
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                     RaycastHit hit;
 
-
+                    //Debug.DrawRay(ray.origin, ray.direction * 5f);
 
                     if (Physics.Raycast(ray, out hit))
                     {
                         if (hit.transform.name == this.name)      //if mouse on the item 
                         {
-
+                           
 
                             bool wasPickedUp = Inventory.instance.Add(item);   
 
                             if (wasPickedUp)
                             {
-                                Debug.Log("item picked =  " + item.name);     //if item picked 
+                                Debug.Log("item picked =  " + item.name);        //if item picked 
                                 Destroy(gameObject);
                             }
                         }

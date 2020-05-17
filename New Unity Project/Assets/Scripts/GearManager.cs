@@ -32,7 +32,7 @@ public class GearManager : MonoBehaviour
         if (used == true)
         {
 
-            Debug.Log(spawn.position);
+            
             newgear.transform.position = spawn.position;
             newgear.transform.rotation = spawn.rotation;
         } 

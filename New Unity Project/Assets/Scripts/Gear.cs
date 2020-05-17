@@ -7,6 +7,7 @@ using UnityEngine;
  
 public class Gear : Items
 {
+    public Vector3 gearsize; 
     
     public override void Use()
     {
