@@ -19,21 +19,23 @@ public class PickUp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 1);  // make limits 
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 2);  // make limits 
         int i = 0;
         while (i < hitColliders.Length)
         {
             if (hitColliders[i].tag == "Player")      //check if player inside the sphere
             {
                 if (Input.GetMouseButtonDown(0))
-                {
+               {
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                     RaycastHit hit;
 
                     //Debug.DrawRay(ray.origin, ray.direction * 5f);
 
                     if (Physics.Raycast(ray, out hit))
-                    {
+                    { 
+                        
+                        Debug.Log(hit.transform.name ) ;
                         if (hit.transform.name == this.name)      //if mouse on the item 
                         {
                            

@@ -14,6 +14,7 @@ public class Gear : Items
         base.Use();
 
         GearManager.instance.used = true;
+        GearManager.instance.size = gearsize;
         GearManager.instance.Spawn(); 
 
 

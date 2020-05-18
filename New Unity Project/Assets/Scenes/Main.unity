@@ -1273,6 +1273,7 @@ MonoBehaviour:
   used: 0
   player: {fileID: 1366785443}
   spawn: {fileID: 915180887}
+  size: {x: 0, y: 0, z: 0}
 --- !u!114 &851016592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2846,8 +2847,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1380262674}
-  - component: {fileID: 1380262673}
   - component: {fileID: 1380262672}
+  - component: {fileID: 1380262673}
   m_Layer: 0
   m_Name: SpawnGearPoint
   m_TagString: Untagged
@@ -2871,19 +2872,20 @@ MonoBehaviour:
   hologramPrefab: {fileID: 83036331174115356, guid: 5a8036a282501104aa187e26b2e481e6,
     type: 3}
   newHologram: {fileID: 0}
---- !u!135 &1380262673
-SphereCollider:
+  size: {x: 0, y: 0, z: 0}
+--- !u!65 &1380262673
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1380262671}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.565155
-  m_Center: {x: 0, y: 0, z: 0.06515503}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1380262674
 Transform:
   m_ObjectHideFlags: 0
@@ -4722,7 +4724,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2077723a917654d4bb5618fc2756873e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 0}
+  item: {fileID: 11400000, guid: 6cafb205c77891f439928eb1b599e928, type: 2}
 --- !u!65 &2099771640
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5097,6 +5099,16 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Gear
       objectReference: {fileID: 0}
+    - target: {fileID: 2002856197323208165, guid: 5007a3c1a00c1a9488df8623f915c75b,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.70182043
+      objectReference: {fileID: 0}
+    - target: {fileID: 2002856197323208165, guid: 5007a3c1a00c1a9488df8623f915c75b,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -0.15128523
+      objectReference: {fileID: 0}
     - target: {fileID: 2002856198770843448, guid: 5007a3c1a00c1a9488df8623f915c75b,
         type: 3}
       propertyPath: m_Name
@@ -5115,7 +5127,7 @@ PrefabInstance:
     - target: {fileID: 2002856198770843449, guid: 5007a3c1a00c1a9488df8623f915c75b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.484
+      value: -3.87
       objectReference: {fileID: 0}
     - target: {fileID: 2002856198770843449, guid: 5007a3c1a00c1a9488df8623f915c75b,
         type: 3}

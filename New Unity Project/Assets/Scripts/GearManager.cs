@@ -10,7 +10,8 @@ public class GearManager : MonoBehaviour
     GameObject newgear; 
     public bool used;
     public GameObject player;
-   public Transform spawn; 
+   public Transform spawn;
+    public Vector3 size; 
 
    #region Singleton 
     public static GearManager instance;
@@ -58,7 +59,7 @@ public class GearManager : MonoBehaviour
         {
 
             newgear = Instantiate(gearprefab) as GameObject;
-            // transform.localScale = player.transform.localScale;
+            newgear.transform.localScale = size; 
             Physics.IgnoreCollision(newgear.GetComponent<Collider>(),player.GetComponent<Collider>()) ; 
             Update();
            

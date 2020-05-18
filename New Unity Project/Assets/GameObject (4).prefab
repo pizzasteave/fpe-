@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6259289453163143649}
   - component: {fileID: 5779240854285127911}
   - component: {fileID: 5779240854285127908}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GameObject (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +78,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5227481331901221714}
   - component: {fileID: 5227481331901221715}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GameObject (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5227481332250753053}
   - component: {fileID: 5227481332250753054}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GameObject (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5227481333088537996}
   - component: {fileID: 5227481333088537997}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GameObject (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,7 +210,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5227481333102754444}
   - component: {fileID: 5227481333102754445}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,7 +255,7 @@ GameObject:
   - component: {fileID: 3125606354380296758}
   - component: {fileID: 8045361191132267627}
   - component: {fileID: 6057311989761743675}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Gear_Spur_16T
   m_TagString: Untagged
   m_Icon: {fileID: 0}
