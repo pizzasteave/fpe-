@@ -6,13 +6,13 @@ using UnityEngine;
 public class PickUp : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Gear  item;
+    public Items  item;
 
     public void Start()
     {
         if (this.CompareTag("Gear"))
         {
-            item.gearsize = this.transform.localScale; 
+            item.size = this.transform.localScale; 
         }
     }
 

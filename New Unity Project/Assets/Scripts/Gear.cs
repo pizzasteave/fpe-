@@ -7,20 +7,21 @@ using UnityEngine;
  
 public class Gear : Items
 {
-    public Vector3 gearsize; 
-    
+
+    public Geartypes geartypes;
+
     public override void Use()
     {
         base.Use();
-
-        GearManager.instance.used = true;
-        GearManager.instance.size = gearsize;
-        GearManager.instance.Spawn(); 
-
+        GearManager.instance.SameGear(this);
+        GearManager.instance.used = true;    
+        Debug.Log("here");
+        RemoveAfterUse();
+        GearManager.instance.Spawn();
 
     }
-
-
-
+   
 }
+
+public enum Geartypes { Gear1, Gear2 };
 

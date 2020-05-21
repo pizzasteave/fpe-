@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -38,6 +39,10 @@ public class Inventory : MonoBehaviour
         return true;                    // if added 
     }
 
+    internal void Remove(GearManager gearManager)
+    {
+        throw new NotImplementedException();
+    }
 
     public void Remove (Items item )
     {

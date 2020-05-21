@@ -5,6 +5,16 @@ using UnityEngine;
 
 public class InteractionHologram : MonoBehaviour
 {
+   
+    
+    #region Singleton 
+    public static InteractionHologram instance;
+    void Awake()
+    {
+        instance = this;
+    }
+
+    #endregion
 
     public bool playerdetected; 
     public GameObject hologramPrefab;
@@ -17,10 +27,11 @@ public class InteractionHologram : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    { 
         size = GearManager.instance.size;
 
         bool used  = GearManager.instance.used;
+       
         
         if (CheckCloseToHologram("Player", 3f) && used == true)
         {
@@ -50,8 +61,11 @@ public class InteractionHologram : MonoBehaviour
                     }
 
                 }
-                else if (hit.transform == null || hit.transform.name != this.name )  { Debug.Log("out of vision ");
-                    Destroy(newHologram);
+                else if (hit.transform == null || hit.transform.name != this.name  )  {
+                    
+                    
+                   Debug.Log("out of vision ");
+                    DestroyHologram(newHologram);
                 }
 
 
@@ -60,7 +74,7 @@ public class InteractionHologram : MonoBehaviour
 
         else
         {
-            Destroy(newHologram);
+            DestroyHologram(newHologram);
             Debug.Log("destroyed out of range ");
 
         }
@@ -79,5 +93,11 @@ public class InteractionHologram : MonoBehaviour
 
     return false;
 }
+
+
+    public void DestroyHologram(GameObject Hologram)
+    {
+        Destroy(Hologram);
+    }
 
 }

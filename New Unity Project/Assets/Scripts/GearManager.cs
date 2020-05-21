@@ -1,17 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
-using UnityEngine.XR;
+
 
 public class GearManager : MonoBehaviour
 {
-    public GameObject gearprefab; 
-    
+    public GameObject gearprefab;
+    public Inventory inventory; 
     GameObject newgear; 
     public bool used;
     public GameObject player;
    public Transform spawn;
-    public Vector3 size; 
+   public Vector3 size;
+   
 
    #region Singleton 
     public static GearManager instance;
@@ -24,19 +24,38 @@ public class GearManager : MonoBehaviour
 
     #endregion
 
+   public Gear[] currentGear ;
 
-   
-    
+    public void Start()
+    {   
+        inventory = Inventory.instance; 
+        int numSlots = System.Enum.GetNames(typeof(Geartypes)).Length;
+        currentGear = new Gear[numSlots];
+         
+    }
+
+    public void SameGear(Gear newItem )
+    {
+        int slotIndex = (int)newItem.geartypes;
+
+        Gear oldItem = null; 
+       if (currentGear[slotIndex] != null)
+        {
+            oldItem = currentGear[slotIndex];       // add the old item to the inventory incase we got 2 items from the same type
+            inventory.Add(oldItem);
+            Destroy(newgear);                   //destroy current gear prefab on scene 
+            InteractionHologram.instance.DestroyHologram(InteractionHologram.instance.newHologram); // access to IntercationHologram to destroy the prefab ! 
+        }
+        currentGear[slotIndex] = newItem;               
+    }
     
     void Update()
     {
         if (used == true)
         {
-
-            
             newgear.transform.position = spawn.position;
             newgear.transform.rotation = spawn.rotation;
-        } 
+        }
 
         // gear = GameObject.Find("Gear");
         /* if  (Input.GetMouseButtonDown(1))
@@ -48,8 +67,7 @@ public class GearManager : MonoBehaviour
 
 
          }*/
-
-
+        Debug.Log(newgear);
     }
 
 
@@ -57,7 +75,7 @@ public class GearManager : MonoBehaviour
     {
         if (used == true)
         {
-
+            
             newgear = Instantiate(gearprefab) as GameObject;
             newgear.transform.localScale = size; 
             Physics.IgnoreCollision(newgear.GetComponent<Collider>(),player.GetComponent<Collider>()) ; 
@@ -65,6 +83,7 @@ public class GearManager : MonoBehaviour
            
 
             Debug.Log("spaw");
+            
 
         }
 

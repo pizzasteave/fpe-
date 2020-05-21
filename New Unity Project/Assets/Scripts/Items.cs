@@ -7,8 +7,8 @@ public class Items : ScriptableObject
 {    
     new public string name = "New Item" ;
     public Sprite icon = null;
-    public bool isDefaultItem = false; 
-
+    public bool isDefaultItem = false;
+    public Vector3 size; 
 
     public virtual void Use ()
     {
@@ -17,9 +17,15 @@ public class Items : ScriptableObject
         //something will happen 
 
         Debug.Log("using " + name);
-
+        GearManager.instance.size = size; 
 
     }
 
+
+    public virtual void RemoveAfterUse()
+    {
+        Inventory.instance.Remove(this); 
+
+    }
 
 }
