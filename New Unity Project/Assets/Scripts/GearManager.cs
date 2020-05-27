@@ -6,7 +6,7 @@ public class GearManager : MonoBehaviour
 {
     public GameObject gearprefab;
     public Inventory inventory; 
-    GameObject newgear; 
+    public GameObject newgear; 
     public bool used;
     public GameObject player;
    public Transform spawn;
@@ -43,7 +43,8 @@ public class GearManager : MonoBehaviour
         {
             oldItem = currentGear[slotIndex];       // add the old item to the inventory incase we got 2 items from the same type
             inventory.Add(oldItem);
-            Destroy(newgear);                   //destroy current gear prefab on scene 
+            Destroy(newgear);                      //destroy current gear prefab on scene 
+            
             InteractionHologram.instance.DestroyHologram(InteractionHologram.instance.newHologram); // access to IntercationHologram to destroy the prefab ! 
         }
         currentGear[slotIndex] = newItem;               

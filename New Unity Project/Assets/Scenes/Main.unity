@@ -1270,10 +1270,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gearprefab: {fileID: 2002856198770843448, guid: 5007a3c1a00c1a9488df8623f915c75b,
     type: 3}
+  inventory: {fileID: 0}
+  newgear: {fileID: 0}
   used: 0
   player: {fileID: 1366785443}
   spawn: {fileID: 915180887}
   size: {x: 0, y: 0, z: 0}
+  currentGear: []
 --- !u!114 &851016592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1846,6 +1849,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PickableGear 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2002856198770843448, guid: 5007a3c1a00c1a9488df8623f915c75b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Gear
       objectReference: {fileID: 0}
     - target: {fileID: 2002856198770843449, guid: 5007a3c1a00c1a9488df8623f915c75b,
         type: 3}
@@ -2872,6 +2880,9 @@ MonoBehaviour:
   hologramPrefab: {fileID: 83036331174115356, guid: 5a8036a282501104aa187e26b2e481e6,
     type: 3}
   newHologram: {fileID: 0}
+  newGear: {fileID: 0}
+  GearPrefab: {fileID: 2002856198770843448, guid: 5007a3c1a00c1a9488df8623f915c75b,
+    type: 3}
   size: {x: 0, y: 0, z: 0}
 --- !u!65 &1380262673
 BoxCollider:
@@ -2881,7 +2892,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1380262671}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -5113,6 +5124,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PickableGear
+      objectReference: {fileID: 0}
+    - target: {fileID: 2002856198770843448, guid: 5007a3c1a00c1a9488df8623f915c75b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Gear
       objectReference: {fileID: 0}
     - target: {fileID: 2002856198770843449, guid: 5007a3c1a00c1a9488df8623f915c75b,
         type: 3}

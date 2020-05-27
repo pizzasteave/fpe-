@@ -19,36 +19,56 @@ public class InteractionHologram : MonoBehaviour
     public bool playerdetected; 
     public GameObject hologramPrefab;
     public GameObject newHologram;
-    public Vector3 size; 
+    public GameObject newGear;
+    public GameObject GearPrefab; 
+    public Vector3 size;
+    public bool gearDetectedForPickUp; 
     // Start is called before the first frame update
+
+
     void Start()
     {
     }
 
     // Update is called once per frame
     void Update()
-    { 
+    {
+
         size = GearManager.instance.size;
 
-        bool used  = GearManager.instance.used;
-       
-        
+        bool used = GearManager.instance.used;
+        //GameObject[] gearPrefab = GameObject.FindGameObjectsWithTag("Gear");
+
+
         if (CheckCloseToHologram("Player", 3f) && used == true)
         {
 
             Debug.Log("player detected");
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+           // RaycastHit[] hits;
+            RaycastHit hit; 
+           // hits = Physics.RaycastAll(ray.origin, ray.direction, 100.0F);
 
-            if (Physics.Raycast(ray, out hit))
+           /* for (int i = 0; i < hits.Length; i++)
+            { if (hits[i].transform.name == "Gear" )   {
+
+                    gearDetectedForPickUp = true;
+                    Debug.Log("sssssssssssssssssss"); 
+                
+                }
+            
+            
+            } */
+
+                if (Physics.Raycast(ray, out hit))
             {
                 Debug.DrawRay(ray.origin, ray.direction * 5);
                 if (hit.transform.name == this.name)
-                {     //if mouse on the item 
+                {                                                             //if mouse on the item 
                     Debug.Log(this.name);
 
-                    if (newHologram == null)
+                    if (newHologram == null  && newGear == null )
                     {
 
                         newHologram = Instantiate(hologramPrefab) as GameObject;
@@ -59,6 +79,19 @@ public class InteractionHologram : MonoBehaviour
                         Debug.Log(hit.transform.name);
 
                     }
+
+                    if ( Input.GetMouseButtonDown(1) && newGear==null)
+
+                    {
+                        DestroyHologram(newHologram);
+                  
+                        newGear = Instantiate(GearPrefab) as GameObject;
+                        newGear.transform.localScale = size;
+                        newGear.transform.position = this.transform.position;
+                        newHologram.transform.rotation = this.transform.rotation;
+                        DestroyHologram(GearManager.instance.newgear); 
+                    }
+
 
                 }
                 else if (hit.transform == null || hit.transform.name != this.name  )  {
@@ -81,7 +114,7 @@ public class InteractionHologram : MonoBehaviour
             
     }
 
-     bool CheckCloseToHologram (string tag, float minimumDistance)
+    public bool CheckCloseToHologram (string tag, float minimumDistance)
 {
     GameObject[] goWithTag = GameObject.FindGameObjectsWithTag(tag);
 
