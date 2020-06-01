@@ -1,4 +1,5 @@
 ﻿
+using JetBrains.Annotations;
 using UnityEngine;
 
 
@@ -11,6 +12,9 @@ public class GearManager : MonoBehaviour
     public GameObject player;
    public Transform spawn;
    public Vector3 size;
+  
+    public int slotIndex;
+     
    
 
    #region Singleton 
@@ -36,7 +40,7 @@ public class GearManager : MonoBehaviour
 
     public void SameGear(Gear newItem )
     {
-        int slotIndex = (int)newItem.geartypes;
+         slotIndex = (int)newItem.geartypes;
 
         Gear oldItem = null; 
        if (currentGear[slotIndex] != null)
@@ -78,7 +82,13 @@ public class GearManager : MonoBehaviour
         {
             
             newgear = Instantiate(gearprefab) as GameObject;
-            newgear.transform.localScale = size; 
+            PickUp.instance.item = GearManager.instance.currentGear[GearManager.instance.slotIndex];
+            newgear.transform.localScale = size;
+          //  gearOldGear = PickUp.instance.item;
+          
+
+
+
             Physics.IgnoreCollision(newgear.GetComponent<Collider>(),player.GetComponent<Collider>()) ; 
             Update();
            

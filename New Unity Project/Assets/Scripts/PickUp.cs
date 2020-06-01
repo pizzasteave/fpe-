@@ -5,6 +5,15 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
+    #region Singleton 
+    public static PickUp instance;
+    void Awake()
+    {
+        instance = this;
+    }
+
+    #endregion
+
     // Start is called before the first frame update
     public Items  item;
 
@@ -45,7 +54,9 @@ public class PickUp : MonoBehaviour
                             if (wasPickedUp)
                             {
                                 Debug.Log("item picked =  " + item.name);        //if item picked 
-                                Destroy(gameObject);
+                                Destroy(transform.parent.gameObject);
+                               
+                                
                             }
                         }
 
