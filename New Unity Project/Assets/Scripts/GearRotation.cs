@@ -21,81 +21,111 @@ public class GearRotation : MonoBehaviour
     public Rigidbody rb;
     public Vector3 vector;
     public bool triggred;
+
     public bool doura;
-   
-    public Quaternion firstRotation;
-    int pi; 
+    public bool dourabar;
+
+    public Vector3 firstRotationVector ;
+    public Vector3 firstPositionVector; 
   
     // Start is called before the first frame update
     void Start()
     {
-        doura = false; 
-       
+          doura = false;
+        dourabar = true; 
+
         // Debug.Log(firstRotation = transform.localRotation) ;
 
-       
+        firstRotationVector = rb.rotation.eulerAngles;
+     
+        firstPositionVector = rb.position;
 
     }
-   /*  void Update()
+    /* void Update()
     {
-       // Debug.Log (Mathf.DeltaAngle (firstRotation, transform.localRotation));
+        // Debug.Log (Mathf.DeltaAngle (firstRotation, transform.localRotation));
 
-   
+        
 
     }*/
     // Update is called once per frame
-    public void FixedUpdate()
+    public void Update()
     {
 
-        if (triggred == true  )
-        {
-            Debug.Log(triggred); 
-         if ( doura == false )
-            {
+
+        /* if (triggred == true )
+         {
+
+             vector = new Vector3(0, speed, 0);
 
 
-           StartCoroutine(ExampleCoroutine());
-            
+             Quaternion deltaRotation = Quaternion.Euler(vector * Time.deltaTime);
 
-                Debug.Log("here");
+             rb.MoveRotation(rb.rotation * deltaRotation);
 
 
-            }
-           
+         }*/
+        if (triggred == true && doura == false   )
+          {
+
+            StartCoroutine(ExampleCoroutine()); 
+
         }
-        doura = false;  
+
+        doura = false;
+        dourabar = true;
+
+
     }
 
-       public IEnumerator ExampleCoroutine()
-    {
+     public IEnumerator ExampleCoroutine()
+  {
         speed = rb.velocity.magnitude;
         angularSpeed = rb.angularVelocity.magnitude * Mathf.Rad2Deg;
         rb.angularVelocity = new Vector3(0, 0, Mathf.PI/2);
-        Debug.Log( rb.rotation.eulerAngles.x);  
-        /*  vector = new Vector3(0, speed, 0);
+ 
+        //  vector = new Vector3(0, speed, 0);
 
 
-           Quaternion deltaRotation = Quaternion.Euler(vector * Time.fixedDeltaTime);
+        //   Quaternion deltaRotation = Quaternion.Euler(vector * Time.deltaTime);
 
-           rb.MoveRotation( rb.rotation *  deltaRotation);
+        //   rb.MoveRotation( rb.rotation *  deltaRotation);
 
 
-         Debug.Log( rb.rotation.eulerAngles.x); */
+      //   Debug.Log( rb.rotation.eulerAngles.x); 
 
 
         
         yield return new WaitForSecondsRealtime(4);
-        Debug.Log ("360");
-        doura = true;
-        triggred = false; 
-        rb.angularVelocity = new Vector3(0, 0, 0);
-        yield break; 
-    
+     
+            ResetGear();
        
-    
-      
+   }
+
+
+
+    public void ResetGear()
+    {
+
+        if (dourabar == true)
+        {
+            triggred = false;
+            Debug.Log(triggred);
+            Debug.Log("360");
+            doura = true;
+            dourabar = false;
+
+
+            rb.angularVelocity = new Vector3(0, 0, 0);
+
+            Vector3 tmp = firstRotationVector;
+            transform.eulerAngles = tmp;
+
+            Vector3 tmp2 = firstPositionVector;
+            Debug.Log(transform.position);
+            transform.position = tmp2;
+        }
+       
     }
 
-
-  
 }

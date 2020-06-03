@@ -798,6 +798,50 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a8036a282501104aa187e26b2e481e6, type: 3}
+--- !u!1 &463134796
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 463134798}
+  - component: {fileID: 463134797}
+  m_Layer: 0
+  m_Name: tang
+  m_TagString: Untagged
+  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &463134797
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 463134796}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.07838482, y: 0.023332715, z: 0.2099669}
+  m_Center: {x: -0.4608076, y: 0.11958474, z: -0.39501655}
+--- !u!4 &463134798
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 463134796}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.219, y: 1.146, z: 3.7444634}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &487252737 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1240625863535247663, guid: dc93e3842e729f941849df4755081e88,
@@ -1456,7 +1500,7 @@ GameObject:
   - component: {fileID: 859913251}
   - component: {fileID: 859913252}
   m_Layer: 0
-  m_Name: GameObject (2)
+  m_Name: tang
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3394,7 +3438,8 @@ MonoBehaviour:
   vector: {x: 0, y: 0, z: 0}
   triggred: 0
   doura: 0
-  firstRotation: {x: 0, y: 0, z: 0, w: 0}
+  firstRotationVector: {x: 0, y: 0, z: 0}
+  firstPositionVector: {x: 0, y: 0, z: 0}
 --- !u!54 &1482886957
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3403,9 +3448,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1482886955}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 5
   m_Drag: 0
-  m_AngularDrag: 0
+  m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
