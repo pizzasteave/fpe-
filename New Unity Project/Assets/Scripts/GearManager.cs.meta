@@ -3,7 +3,13 @@ guid: 1e032cdb4faab6f49814ba971798d272
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - gearprefab: {instanceID: 0}
+  - inventory: {instanceID: 0}
+  - newgear: {instanceID: 0}
+  - player: {fileID: 6734512715766874551, guid: 1ac7a26858b66284e8e8003f411d2079,
+      type: 3}
+  - spawn: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

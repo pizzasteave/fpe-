@@ -84,16 +84,15 @@ public class GearManager : MonoBehaviour
             newgear = Instantiate(gearprefab) as GameObject;
             PickUp.instance.item = GearManager.instance.currentGear[GearManager.instance.slotIndex];
             newgear.transform.localScale = size;
-          //  gearOldGear = PickUp.instance.item;
-          
-
-
-
-            Physics.IgnoreCollision(newgear.GetComponent<Collider>(),player.GetComponent<Collider>()) ; 
+            //  gearOldGear = PickUp.instance.item;
+            Collider col = newgear.GetComponent<Collider>();
+            col.enabled = true;
+            //Physics.IgnoreCollision(newgear.GetComponent<Collider>(),player.GetComponent<Collider>()) ;
+            Debug.Log("spaw");  
             Update();
            
 
-            Debug.Log("spaw");
+         
             
 
         }

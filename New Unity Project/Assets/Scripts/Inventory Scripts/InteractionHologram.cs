@@ -77,6 +77,7 @@ public class InteractionHologram : MonoBehaviour
                 
                 if (hit.transform.tag == "SpawnGearPoint" && GearManager.instance.newgear != null )           // if player vision point on the SpawnGearObject
                 {
+                    Debug.Log("owaaaaaaawawawaw");
                     if (newHologram == null && newGear == null)                 //if no hologram already true aka we need 1 hologram on the scene 
                                                                                 //if no newGear localy arround the spawngearPoint aka to stop hologram from spawning if we got 1 gear spawn 
                     {
@@ -89,6 +90,7 @@ public class InteractionHologram : MonoBehaviour
                         Debug.Log(hit.transform.name);
 
                     }
+                   
 
                     if (Input.GetMouseButtonDown(1) && newGear == null)
 
@@ -111,13 +113,20 @@ public class InteractionHologram : MonoBehaviour
 
                 }
 
-                else if (hit.transform == null || hit.transform.name != this.name)
+
+             if (hit.transform.tag != "SpawnGearPoint")
                 {
-
-
                     Debug.Log("out of vision ");
-                    DestroyHologram(newHologram);
+
                 }
+                
+                    
+
+                
+
+
+
+
 
                 if (Input.GetMouseButtonDown(0)  && hit.transform.name == "GearI")
                 {                    
@@ -125,6 +134,12 @@ public class InteractionHologram : MonoBehaviour
                    // DestroyHologram(newGear); 
                 }
                
+            }
+
+            if (newGear == null && newHologram != null)
+            {
+                newHologram.transform.localScale = size;
+
             }
         }
 
