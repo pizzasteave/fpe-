@@ -23,7 +23,7 @@ public class InteractionHologram : MonoBehaviour
     public GameObject GearPrefab; 
     public Vector3 size;
    // public Items gearOldGear; 
-    private Collider collider; 
+    private new Collider collider; 
 
 
   [SerializeField]
@@ -71,62 +71,56 @@ public class InteractionHologram : MonoBehaviour
 
              } */
 
+
             foreach (var hit in multipleHits)
             {
+               
                 Debug.DrawRay(ray.origin, ray.direction * 5);
-                
-                if (hit.transform.tag == "SpawnGearPoint" && GearManager.instance.newgear != null )           // if player vision point on the SpawnGearObject
+                if (GearManager.instance.newgear != null)   //if player got gear on his hand 
                 {
-                    Debug.Log("owaaaaaaawawawaw");
-                    if (newHologram == null && newGear == null)                 //if no hologram already true aka we need 1 hologram on the scene 
-                                                                                //if no newGear localy arround the spawngearPoint aka to stop hologram from spawning if we got 1 gear spawn 
+
+                    if (hit.transform.CompareTag("SpawnGearPoint"))           // if player vision point on the SpawnGearObject
                     {
+                        Debug.Log("owaaaaaaawawawaw");
+                        if (newHologram == null && newGear == null)                 //if no hologram already true aka we need 1 hologram on the scene 
+                                                                                    //if no newGear localy arround the spawngearPoint aka to stop hologram from spawning if we got 1 gear spawn 
+                        {
 
-                        newHologram = Instantiate(hologramPrefab) as GameObject;        //
-                        newHologram.transform.localScale = size;
-                        newHologram.transform.position = this.transform.position;
-                        newHologram.transform.rotation = this.transform.rotation;
+                            newHologram = Instantiate(hologramPrefab) as GameObject;        //
+                            newHologram.transform.localScale = size;
+                            newHologram.transform.position = this.transform.position;
+                            newHologram.transform.rotation = this.transform.rotation;
 
-                        Debug.Log(hit.transform.name);
+                            Debug.Log(hit.transform.name);
+
+                        }
+
+
+                        if (Input.GetMouseButtonDown(1) && newGear == null)
+
+                        {
+                            DestroyHologram(newHologram);
+
+                            newGear = Instantiate(GearPrefab) as GameObject;
+                            newGear.transform.localScale = size;
+                            newGear.transform.position = this.transform.position;
+                            PickUp.instance.item = GearManager.instance.currentGear[GearManager.instance.slotIndex];
+
+                            newHologram.transform.rotation = this.transform.rotation;
+                            DestroyHologram(GearManager.instance.newgear);
+                            GearManager.instance.currentGear[GearManager.instance.slotIndex] = null;   //remove this gear from the currnet gears (no old item because it is used)
+
+
+                        }
+
+
 
                     }
-                   
-
-                    if (Input.GetMouseButtonDown(1) && newGear == null)
-
-                    {
-                        DestroyHologram(newHologram);
-
-                        newGear = Instantiate(GearPrefab) as GameObject;
-                        newGear.transform.localScale = size;
-                        newGear.transform.position = this.transform.position;
-                        PickUp.instance.item = GearManager.instance.currentGear[GearManager.instance.slotIndex]; 
-
-                        newHologram.transform.rotation = this.transform.rotation;
-                        DestroyHologram(GearManager.instance.newgear);
-                        GearManager.instance.currentGear[GearManager.instance.slotIndex] = null;   //remove this gear from the currnet gears (no old item because it is used)
-
-
-                    }
-
                   
-
+                   
                 }
 
-
-             if (hit.transform.tag != "SpawnGearPoint")
-                {
-                    Debug.Log("out of vision ");
-
-                }
-                
-                    
-
-                
-
-
-
-
+              
 
                 if (Input.GetMouseButtonDown(0)  && hit.transform.name == "GearI")
                 {                    
@@ -136,11 +130,23 @@ public class InteractionHologram : MonoBehaviour
                
             }
 
+
             if (newGear == null && newHologram != null)
             {
                 newHologram.transform.localScale = size;
 
             }
+
+            var x = multipleHits.Length;
+            Debug.Log(x);
+
+            if (x  == 0 )
+            {
+                DestroyHologram(newHologram);
+
+            }
+
+
         }
 
         else

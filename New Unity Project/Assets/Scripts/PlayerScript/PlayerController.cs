@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     public CharacterController controller;
     public Transform camOffset; 
-    public float speed = 6f;
+
     public float smoothTime = 0.01f;
     private float smoothVelocity;
     private Vector3 moveDirection;
@@ -26,9 +26,18 @@ public class PlayerController : MonoBehaviour
     private Vector3 _inputs = Vector3.zero;
       public bool _isGrounded = true;
     public Transform _groundChecker;
-    public Quaternion rotation; 
+    public Quaternion rotation;
+
+    #region Singleton 
+    public static PlayerController instance;
+    void Awake()
+    {
 
 
+        instance = this;
+    }
+
+    #endregion
     void Start()
     {
         _body = GetComponent<Rigidbody>();
@@ -55,7 +64,7 @@ public class PlayerController : MonoBehaviour
                 Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
            //   Quaternion lookRotaion = Quaternion.LookRotation(new Vector3(moveDirection.x, 0, moveDirection.z));
             //  transform.rotation = Quaternion.Slerp(transform.rotation, lookRotaion, Time.deltaTime * 5f);
-              //  controller.Move ( moveDirection.normalized * speed * Time.deltaTime);         
+              //  controller.Move ( moveDirection.normalized * Speed * Time.deltaTime);         
 
           }*/
 
@@ -84,7 +93,7 @@ public class PlayerController : MonoBehaviour
          Vector3 rot = new Vector3(0, yangle, 0);
          rotation = Quaternion.Euler(0, yangle, 0);*/
 
-
+        Debug.Log(Speed);
     }
 
 
@@ -97,15 +106,18 @@ public class PlayerController : MonoBehaviour
     Vector3 direction = new Vector3(_inputs.x, 0, _inputs.z).normalized;
     directionMag = direction.magnitude;
 
-   
-    if (directionMag >= 0.01f)
-    {
+
         float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + camOffset.eulerAngles.y; //tangente opposé / adjascant 
         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref smoothVelocity, smoothTime);  // we can use lerp ! 
         transform.rotation = (Quaternion.Euler(0f, angle, 0f));
         moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
-        _body.MovePosition(_body.position + moveDirection.normalized * Speed * Time.deltaTime);
+       
+        if (directionMag >= 0.01f)
+    {
+
+
+        _body.MovePosition(_body.position + moveDirection.normalized * Speed * Time.fixedDeltaTime);
     }
     }
 

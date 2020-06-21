@@ -6,26 +6,31 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
     public float lookraduis;
-    Transform target;
+     Transform target;
     NavMeshAgent agent;
-    Rigidbody rb; 
+    Rigidbody rb;
+    Vector3 offSet; 
     // Start is called before the first frame update
     void Start()
     {
         target = PlayerManager.instance.playerposition.transform;
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
+        offSet = new Vector3 (0.7f,0, 0.7f); 
     }
 
     // Update is called once per frame
     void Update()
     {
         float distance = Vector3.Distance(target.position, transform.position);
+
         if (distance <= lookraduis)
         {
 
-            agent.SetDestination(target.position);
+            agent.SetDestination(target.position + offSet);
             FaceTarget();
+
+          
             
           /*  if (distance <= agent.stoppingDistance)
             {
@@ -51,5 +56,24 @@ public class EnemyController : MonoBehaviour
 
 
 
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+      if (other == PlayerController.instance.GetComponent<Collider>())
+        {
+            PlayerController.instance.Speed -= 2f;
+
+        }
+
+
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other == PlayerController.instance.GetComponent<Collider>())
+        {
+            PlayerController.instance.Speed += 2f;
+
+        }
     }
 }
