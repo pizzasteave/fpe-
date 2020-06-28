@@ -18,7 +18,7 @@ public class SwitchCamera : MonoBehaviour
     void Update()
     {
         float distance = Vector3.Distance(PlayerController.instance.transform.position, gearspawn.transform.position);
-        Debug.Log(distance);
+       
         if (distance <= 1f)
         {
             camgearsystem.Priority = 11;
